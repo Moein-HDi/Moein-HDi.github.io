@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Exo";
+  src: url("static/fonts/Exo-VariableFont_wght.ttf") format("truetype");
+  /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+  font-style: normal;
+}
+
+:root {
+  --font-default: "Exo";
+}
+
+/* ----------------------------------- */
+
+body {
+  font-family: var(--font-default);
+}
+
+.cls-1 {
+  fill: transparent;
+  stroke: #30e57e;
+  stroke-width: 10px;
+}
+
+.splash {
+  z-index: 200;
+}
+
+.splash.display-none {
+  z-index: -10;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.typed-cursor {
+  @apply text-7xl opacity-30 font-extralight;
+}
