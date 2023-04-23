@@ -12,6 +12,30 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
   <script src="https://kit.fontawesome.com/63c4b57529.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script type="text/javascript">
+    (function () {
+      // https://dashboard.emailjs.com/admin/account
+      emailjs.init('CehXJePtjryORaJWG');
+    })();
+  </script>
+  <script type="text/javascript">
+    window.onload = function () {
+      document.getElementById('contact-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        // generate a five digit number for the contact_number variable
+        this.contact_number.value = Math.random() * 100000 | 0;
+        // these IDs from the previous steps
+        emailjs.sendForm('contact_service', 'contact_form', this)
+          .then(function () {
+            console.log('SUCCESS!');
+          }, function (error) {
+            console.log('FAILED...', error);
+          });
+      });
+    }
+  </script>
 </head>
 
 <body>
@@ -347,10 +371,25 @@
               email and I will respond as soon as possible. </p>
             <p class="text-center mx-auto max-w-lg text-primary font-mono space-x-3"><i
                 class="fa-regular fa-envelope"></i><span>moein.hedayati@gmail.com</span></p>
-            <a href="mailto:moein.hedayati@gmail.com"
-              class="mx-auto btn font-normal font-mono btn-outline btn-primary rounded-none">
-              Say hi
-            </a>
+            <form id="contact-form">
+              <div class="max-w-lg mx-auto">
+                <div class="form-control mb-5">
+                  <input type="hidden" name="contact_number">
+                  <input class="input input-bordered rounded-none" placeholder="Your name" type="text" name="user_name">
+                </div>
+                <div class="form-control mb-5">
+                  <input class="input input-bordered rounded-none" placeholder="Your Email" type="email" name="user_email">
+                </div>
+                <div class="form-control mb-5">
+                  <textarea class="textarea textarea-bordered text-base rounded-none" placeholder="Message" name="message"></textarea>
+                </div>
+                <div class="form-control mb-5">
+                  <div class="g-recaptcha mx-auto" data-sitekey="6LfBbbAlAAAAACGcI1zIx5hGWgvtw3A2n4rZ7-PP"></div>
+                </div>
+                <input class="btn btn-outline btn-primary rounded-none" type="submit" value="Send">
+              </div>
+              
+            </form>
           </div>
         </div>
       </section>
