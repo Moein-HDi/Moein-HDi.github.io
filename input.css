@@ -38,3 +38,7 @@ body {
 .typed-cursor {
   @apply text-7xl opacity-30 font-extralight;
 }
+
+progress.progress-primary{
+  background-color: #121a2e;
+}
